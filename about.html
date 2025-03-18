@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Farmify</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url(./images/pexels-badesaba-16002325.jpg);
+      color: #333;  
+    }
+
+    .about-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .about-section h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 50px 0;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin: 20px;
+      padding: 20px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.05);
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .about-button {
+      background-color: #ff7f50;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .about-button:hover {
+      background-color: #ff4500;
+    }
+  </style>
+</head>
+<body>
+  <section class="about-section">
+    <h1>About Farmify</h1>
+    <p>
+      Farmify is a smart farming platform dedicated to empowering farmers with innovative tools and technology. 
+      By integrating modern agricultural practices with data-driven insights, Farmify ensures sustainable and profitable farming solutions.
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Smart Recommendations</h3>
+        <p>Get personalized crop and fertilizer recommendations based on soil and weather data.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Real-Time Monitoring</h3>
+        <p>Track your farm's performance with real-time data and analytics.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Sustainable Practices</h3>
+        <p>Adopt eco-friendly farming methods to ensure long-term agricultural success.</p>
+      </div>
+    </div>
+    <a href="#" class="about-button">Learn More</a>
+  </section>
+  <script>
+    document.querySelector('.about-button').addEventListener('click', () => {
+      alert('Discover more about Farmify soon!');
+    });
+  </script>
+</body>
+</html>

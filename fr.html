@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fertilizer Recommendation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      padding: 10px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e8f5e9;
+      border-left: 5px solid #4CAF50;
+      border-radius: 4px;
+    }
+
+    .translator {
+      margin: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fertilizer Recommendation</h1>
+    <p>Find the best fertilizer for your crops and soil type</p>
+  </header>
+
+  <div class="container">
+    <label for="crop">Select Crop:</label>
+    <select id="crop">
+      <option value="none">-- Select Crop --</option>
+      <option value="wheat">Wheat</option>
+      <option value="rice">Rice</option>
+      <option value="corn">Corn</option>
+      <option value="vegetables">Vegetables</option>
+    </select>
+
+    <label for="soil">Select Soil Type:</label>
+    <select id="soil">
+      <option value="none">-- Select Soil Type --</option>
+      <option value="sandy">Sandy</option>
+      <option value="clay">Clay</option>
+      <option value="loamy">Loamy</option>
+      <option value="silt">Silt</option>
+    </select>
+
+    <button onclick="recommendFertilizer()">Get Recommendation</button>
+
+    <div id="result" class="result" style="display: none;">
+      <h3>Recommended Fertilizer:</h3>
+      <p id="fertilizer-text"></p>
+    </div>
+
+    <div class="translator">
+      <label for="language">Translate Recommendation:</label>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="hi">Hindi</option>
+        <option value="fr">French</option>
+        <option value="zh">Chinese</option>
+      </select>
+      <button onclick="translateText()">Translate</button>
+    </div>
+  </div>
+
+  <script>
+    // Fertilizer recommendations
+    const recommendations = {
+      wheat: {
+        sandy: "Use Nitrogen-based fertilizers like Urea or Ammonium Sulfate.",
+        clay: "Use Potassium-based fertilizers such as Muriate of Potash.",
+        loamy: "Balanced fertilizers like NPK 10:20:10 work well.",
+        silt: "Phosphorus-based fertilizers like DAP (Diammonium Phosphate) are ideal."
+      },
+      rice: {
+        sandy: "Nitrogen fertilizers combined with Zinc Sulfate are recommended.",
+        clay: "Potash-rich fertilizers and farmyard manure are effective.",
+        loamy: "Use NPK fertilizers with a higher nitrogen ratio, such as 20:10:10.",
+        silt: "Phosphorus and organic fertilizers like compost are best."
+      },
+      corn: {
+        sandy: "Urea and Potash-based fertilizers are ideal for sandy soil.",
+        clay: "Ammonium Nitrate and farmyard manure work well.",
+        loamy: "Balanced NPK fertilizers like 15:15:15 are recommended.",
+        silt: "Use organic compost and phosphorus fertilizers."
+      },
+      vegetables: {
+        sandy: "Use compost mixed with NPK fertilizers for better results.",
+        clay: "Potash-rich fertilizers combined with farmyard manure are suitable.",
+        loamy: "Balanced fertilizers with micronutrients are ideal for vegetables.",
+        silt: "Organic fertilizers and Vermicompost are highly recommended."
+      }
+    };
+
+    
+    function recommendFertilizer() {
+      const crop = document.getElementById("crop").value;
+      const soil = document.getElementById("soil").value;
+      const resultDiv = document.getElementById("result");
+      const fertilizerText = document.getElementById("fertilizer-text");
+
+      if (crop === "none" || soil === "none") {
+        alert("Please select both a crop and a soil type.");
+        return;
+      }
+
+      fertilizerText.textContent = recommendations[crop][soil];
+      resultDiv.style.display = "block";
+    }
+
+    // Translate recommendation using Google Translate API
+    async function translateText() {
+      const language = document.getElementById("language").value;
+      const fertilizerText = document.getElementById("fertilizer-text").textContent;
+
+      if (!fertilizerText) {
+        alert("Please generate a recommendation first.");
+        return;
+      }
+
+      const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${language}&dt=t&q=${encodeURIComponent(fertilizerText)}`);
+      const data = await response.json();
+
+      const translatedText = data[0][0][0];
+      document.getElementById("fertilizer-text").textContent = translatedText;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* Root Variables */
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #388E3C;
+    --background: #f9f9f9;
+    --text-color: #2c3e50;
+    --error-color: #d32f2f;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.header nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* Upload Section */
+.upload-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.drop-zone {
+    border: 2px dashed var(--primary-color);
+    border-radius: 10px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.drop-zone.dragover {
+    border-color: var(--secondary-color);
+}
+
+.analyze-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Results Section */
+.result-section {
+    margin-top: 3rem;
+}
+
+.result-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+}
+
+.card-body {
+    padding: 1rem;
+    display: none;
+}
+
+.card-body img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.recommendations ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background: var(--error-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--primary-color);
+    color: white;
+    margin-top: 3rem;
+}

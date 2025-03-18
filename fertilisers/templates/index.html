@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Recommendation</title>
+</head>
+<body>
+    <h2>Fertilizer Recommendation System</h2>
+    <form id="prediction-form">
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" name="Temparature" placeholder="e.g., 25" required><br>
+
+        <label for="humidity">Humidity:</label>
+        <input type="number" id="humidity" name="Humidity" placeholder="e.g., 60" required><br>
+
+        <label for="moisture">Moisture:</label>
+        <input type="number" id="moisture" name="Moisture" placeholder="e.g., 40" required><br>
+
+        <label for="soil_type">Soil Type:</label>
+        <input type="text" id="soil_type" name="Soil Type" placeholder="e.g., Loamy" required><br>
+
+        <label for="crop_type">Crop Type:</label>
+        <input type="text" id="crop_type" name="Crop Type" placeholder="e.g., Wheat" required><br>
+
+        <label for="nitrogen">Nitrogen:</label>
+        <input type="number" id="nitrogen" name="Nitrogen" placeholder="e.g., 30" required><br>
+
+        <label for="potassium">Potassium:</label>
+        <input type="number" id="potassium" name="Potassium" placeholder="e.g., 40" required><br>
+
+        <label for="phosphorous">Phosphorous:</label>
+        <input type="number" id="phosphorous" name="Phosphorous" placeholder="e.g., 50" required><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        document.getElementById('prediction-form').onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = {
+                "Temparature": document.getElementById("temperature").value,
+                "Humidity": document.getElementById("humidity").value,
+                "Moisture": document.getElementById("moisture").value,
+                "Soil Type": document.getElementById("soil_type").value,
+                "Crop Type": document.getElementById("crop_type").value,
+                "Nitrogen": document.getElementById("nitrogen").value,
+                "Potassium": document.getElementById("potassium").value,
+                "Phosphorous": document.getElementById("phosphorous").value
+            };
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+            document.getElementById("result").innerText = result.recommended_fertilizer || "Error: " + result.error;
+        };
+    </script>
+</body>
+</html>

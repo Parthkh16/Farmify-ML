@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { padding: 20px 0; background-color: #f8f9fa; }
+        .dashboard-card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px; transition: transform 0.3s; }
+        .dashboard-card:hover { transform: translateY(-5px); }
+        .metrics-card { text-align: center; padding: 15px; }
+        .metrics-card .icon { font-size: 2.5rem; margin-bottom: 10px; color: #0d6efd; }
+        .metrics-card .number { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
+        .metrics-card .label { font-size: 1rem; color: #6c757d; }
+        .chart-container { position: relative; min-height: 300px; margin-bottom: 30px; }
+        .chart-container img { max-width: 100%; height: auto; border-radius: 5px; }
+        .misclassifications-table { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="text-center">Model Performance Dashboard</h1>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="/" class="btn btn-primary">Back to Classifier</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card dashboard-card metrics-card">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="number" id="accuracy">99.44%</div>
+                    <div class="label">Validation Accuracy</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card dashboard-card metrics-card">
+                    <div class="icon"><i class="fas fa-tags"></i></div>
+                    <div class="number" id="classes">70</div>
+                    <div class="label">Classes</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card dashboard-card metrics-card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <div class="number" id="parameters">25.6M</div>
+                    <div class="label">Parameters</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card dashboard-card metrics-card">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <div class="number" id="inference-time">0.24s</div>
+                    <div class="label">Avg. Inference Time</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h4>Accuracy over Training</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <img src="/accuracy-chart" alt="Accuracy Chart" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h4>Loss over Training</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <img src="/loss-chart" alt="Loss Chart" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h4>Class Distribution</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <img src="/class-distribution" alt="Class Distribution Chart" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

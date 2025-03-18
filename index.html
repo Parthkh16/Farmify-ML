@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FARMIFY</title>
+    <link rel="stylesheet" href="css/sty.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* Parallax effect styles */
+      .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .home {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .home .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .home .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        transform: translateZ(-1px) scale(2);
+      }
+
+      .features .row .image,
+      .features .row .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .features .row .image img {
+        transition: transform 0.5s ease;
+      }
+
+      .features .row:hover .image img {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- navbar sections starts  -->
+    <header class="header">
+      <div class="logo">
+        <img
+          src="./images/farmify-removebg-preview.png"
+          alt="logo"
+          height="150px"
+          width="150px"
+          aria-placeholder=""
+        />
+      </div>
+
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="about.html">About</a>
+        <a href="#footer">Contact</a>
+        <a href="http://127.0.0.1:5003/">Dashboard</a>
+
+        <a href="explore/index.html" class="btn">EXPLORE NOW</a>
+      </nav>
+
+      <div class="fas fa-bars" id="menu-btn"></div>
+    </header>
+    <!-- navbar sections ends  -->
+
+    <!-- home section starts  -->
+    <section class="home parallax" id="home" style="background-image: url('./images/farming3.jpg');">
+      <div class="content">
+        <h1>FARMIFY</h1>
+        <p style="font-family: sans-serif;">INNOVATIVE TOOLS FOR A GREENER TOMORROW</p>
+        <a href="guide/index.html" class="home-btn" target="_blank">Smart Farming guide</a>
+      </div>
+    </section>
+    <!-- home section ends -->
+
+    <!-- features section starts  -->
+    <section class="features" id="features">
+      <div class="heading">
+        <h1>Features</h1>
+        <p>
+          FARMIFY provides farmers with essential tools for smarter farming. It
+          offers personalized crop recommendations based on soil and climate,
+          helps identify plant diseases through image analysis, and provides
+          real-time weather forecasts. The app also includes features for crop
+          planning and guidance, ensuring optimal farming decisions for better
+          yields and healthier crops.
+        </p>
+      </div>
+
+      <div class="button-container">
+        <a href="http://127.0.0.1:5001/" class="button-13 active" role="button">
+          <span class="text">Crop Recommendations</span>
+          <span class="button-13-background"></span>
+          <span class="button-13-border"></span>
+        </a>
+        
+        <a href="http://127.0.0.1:5000/" class="button-13 active" role="button">
+          <span class="text">Identify Plant Disease</span>
+          <span class="button-13-background"></span>
+          <span class="button-13-border"></span>
+        </a>
+        
+        <a href="weather-forecast/index.html" class="button-13" role="button">
+          <span class="text">Today's Weather Forecast</span>
+          <span class="button-13-background"></span>
+          <span class="button-13-border"></span>
+        </a>
+        
+        <a href="fr.html" class="button-13" role="button">
+          <span class="text">Fertilizer recommendation</span>
+          <span class="button-13-background"></span>
+          <span class="button-13-border"></span>
+        </a>
+        
+        <a href="" class="button-13" role="button">
+          <span class="text">Smart Farming Guidance</span>
+          <span class="button-13-background"></span>
+          <span class="button-13-border"></span>
+        </a>
+      </div>
+
+      <div class="row">
+        <!-- 0 Tab  -->
+        <div class="image">
+          <img
+            src="./weather-forecast/img/pexels-apasaric-325185.jpg"
+            alt="crop-planning"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <div class="content">
+          <h1>Weather Forecast</h1>
+          <p>
+            Plan Your Farming With Precision! Check Real-Time Weather Insights
+            On Temperature, Humidity, And More. Integrated With Our
+            Crop-Prediction Model For Optimal Decisions. Explore Historical
+            Data, Get Alerts, And Access Educational Resources.
+          </p>
+          <a href="#" class="all-btn">more info</a>
+        </div>
+
+        <!-- 1 Tab  -->
+        <div class="content">
+          <h1>Smart Crop Planning</h1>
+          <p>
+            Harness the power of data analysis to predict crop suitability,
+            providing insights into optimal cultivation conditions. AgriSens
+            optimizes farming decisions based on comprehensive factors like soil
+            quality, weather, and more.
+          </p>
+          <a href="#" class="all-btn">more info</a>
+        </div>
+
+        <div class="image">
+          <img
+            src="./images/pexels-dana-tentis-118658-393768.jpg"
+            alt="crop-planning"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <!-- 2 Tab  -->
+        <div class="image">
+          <img
+            src="./images/pexels-yankrukov-5479034.jpg"
+            alt="Disease-Detection"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <div class="content">
+          <h1>Plant Disease Identification</h1>
+          <p>
+            Assist farmers in detecting plant diseases by enabling image
+            uploads, utilizing this analysis for prompt and precise
+            identification, enhancing farming efficiency and crop management.
+          </p>
+          <a href="#" class="all-btn">more info</a>
+        </div>
+
+        <!-- 3 Tab  -->
+        <div class="content">
+          <h1>Smart Farming, Simple Guidance</h1>
+          <p>
+            Smart Crop Guide offers a simple, step-by-step plan for growing
+            crops. It provides expert planting tips, tracks growth stages, and
+            sends watering reminders. The app also gives pest control advice,
+            harvest timing, weather updates, and fertilizer recommendations to
+            ensure healthy crops.
+          </p>
+          <a href="#" class="all-btn">more info</a>
+        </div>
+
+        <div class="image">
+          <img
+            src="images/pexels-viktoria-slowikowska-5677795.jpg"
+            alt="ranked-recommendations"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <!-- 4 Tab  -->
+        <div class="image">
+          <img
+            src="./images/pexels-jatuphon-buraphon-110709-348689.jpg"
+            alt="modern-farms"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <div class="content">
+          <h1>Innovations for Modern Farms</h1>
+          <p>
+            Smart Crop Tech, Precision Farming, and Customizable Solutions for
+            Sustainable and Efficient Agriculture!
+          </p>
+          <a href="#" class="all-btn">more info</a>
+        </div>
+      </div>
+    </section>
+    <!-- features section ends -->
+
+    <!-- footer section starts  -->
+    <section class="footer" id="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>quick links</h3>
+          <a href="#home"><i class="fas fa-chevron-right"></i>home</a>
+          <a href="#features"><i class="fas fa-chevron-right"></i>features</a>
+          <a href="#about"><i class="fas fa-chevron-right"></i>about</a>
+        </div>
+
+        <div class="box">
+          <h3>extra links</h3>
+          <a href="#"><i class="fas fa-chevron-right"></i>ask questions</a>
+          <a href="#"><i class="fas fa-chevron-right"></i>terms of use</a>
+          <a href="#"><i class="fas fa-chevron-right"></i>privacy policy</a>
+        </div>
+
+        <div class="box">
+          <h3>Helpful Resources</h3>
+          <a href="#"><i class="fas fa-chevron-right"></i> FAQs</a>
+          <a href="#"><i class="fas fa-chevron-right"></i> User Guides</a>
+          <a href="#"><i class="fas fa-chevron-right"></i> Support Center</a>
+        </div>
+
+        <div class="chatbot-container">
+          <div class="chatbot-header">
+            <span>Chat with FARMIFY Bot</span>
+            <button id="close-chatbot" class="chatbot-close-btn">×</button>
+          </div>
+          <div class="chatbot-body" id="chatbot-body">
+            <div class="chatbot-message bot">
+              Hi there! I'm FARMIFY Bot. How can I assist you today?
+            </div>
+          </div>
+          <div class="chatbot-footer">
+            <input
+              type="text"
+              id="chatbot-input"
+              placeholder="Type your message..."
+              autofocus
+            />
+            <button id="send-message-btn">Send</button>
+          </div>
+        </div>
+        <button class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+          <i class="fas fa-comments"></i>
+        </button>
+      </div>
+
+      <div class="credit">
+        <a href="" target="_blank"><span>TEAM FARMIFY</span> </a>
+      </div>
+    </section>
+    <!-- footer section ends -->
+
+    <script src="main.js"></script>
+  </body>
+</html>

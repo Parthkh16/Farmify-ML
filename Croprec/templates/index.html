@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #2e7d32;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: 500;
+            text-align: left;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 8px rgba(46, 125, 50, 0.3);
+        }
+
+        button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .prediction {
+            margin-top: 20px;
+            color: #2e7d32;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Recommendation System</h1>
+        <form method="POST">
+            <label for="nitrogen">Nitrogen (N):</label>
+            <input type="number" step="any" id="nitrogen" name="nitrogen" required>
+
+            <label for="phosphorus">Phosphorus (P):</label>
+            <input type="number" step="any" id="phosphorus" name="phosphorus" required>
+
+            <label for="potassium">Potassium (K):</label>
+            <input type="number" step="any" id="potassium" name="potassium" required>
+
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" step="any" id="temperature" name="temperature" required>
+
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" step="any" id="humidity" name="humidity" required>
+
+            <label for="ph">Soil pH:</label>
+            <input type="number" step="any" id="ph" name="ph" required>
+
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" step="any" id="rainfall" name="rainfall" required>
+
+            <button type="submit">Predict Crop</button>
+        </form>
+
+        {% if prediction is not none %}
+            <h2 class="prediction">Predicted Crop: {{ prediction }}</h2>
+        {% endif %}
+
+        {% if error %}
+            <h2 class="error">Error: {{ error }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>

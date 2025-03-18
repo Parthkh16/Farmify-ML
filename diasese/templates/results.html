@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px 0;
+            background-color: #f8f9fa;
+        }
+        .results-card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .results-card:hover {
+            transform: translateY(-5px);
+        }
+        .results-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .confidence-bar {
+            height: 25px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .confidence-fill {
+            height: 100%;
+            background-color: #28a745;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="mb-3">Prediction Results</h1>
+                <a href="/" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card results-card">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">Prediction Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Display the uploaded image -->
+                        <div class="text-center mb-4">
+                            <img src="{{ url_for('static', filename=image_path.split('/')[-1]) }}" alt="Uploaded Image" class="results-img">
+                        </div>
+
+                        <!-- Display the prediction results -->
+                        <div class="mb-3">
+                            <h5>Predicted Class:</h5>
+                            <p class="lead">{{ prediction }}</p>
+                        </div>
+
+                        <!-- Confidence score -->
+                        <div class="mb-3">
+                            <h5>Confidence:</h5>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: {{ confidence }}%;">
+                                    {{ confidence | round(2) }}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Processing time -->
+                        <div class="mb-3">
+                            <h5>Processing Time:</h5>
+                            <p>{{ processing_time | round(2) }} seconds</p>
+                        </div>
+
+                        <!-- Image dimensions -->
+                        <div class="mb-3">
+                            <h5>Image Dimensions:</h5>
+                            <p>{{ image_dimensions[0] }} x {{ image_dimensions[1] }} pixels</p>
+                        </div>
+
+                        <!-- Recommendations -->
+                        <div class="mb-3">
+                            <h5>Recommendations:</h5>
+                            <div id="recommendations">
+                                <p class="text-muted">Loading recommendations...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Fetch recommendations for the predicted class
+        $(document).ready(function() {
+            const predictedClass = "{{ prediction }}";
+            $.getJSON(`/get-recommendations/${predictedClass}`, function(data) {
+                const recommendations = `
+                    <p><strong>Treatment:</strong> ${data.treatment}</p>
+                    <p><strong>Prevention:</strong> ${data.prevent}</p>
+                `;
+                $("#recommendations").html(recommendations);
+            }).fail(function() {
+                $("#recommendations").html("<p class='text-danger'>Failed to load recommendations.</p>");
+            });
+        });
+    </script>
+</body>
+</html>

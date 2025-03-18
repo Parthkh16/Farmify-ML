@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Disease Classifier</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px 0; background-color: #f8f9fa; }
+        .upload-card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .upload-card:hover { transform: translateY(-5px); }
+        .header-img { max-height: 200px; object-fit: cover; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="mb-3">FARMIFY - Agricultural Disease Classifier</h1>
+                <p class="lead">Upload an image to identify plant diseases, crop health, and rotten fruits</p>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="/model-stats" class="btn btn-success">View Model Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card upload-card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Upload Image</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Select an image to classify:</label>
+                                <input type="file" class="form-control" id="file" name="file" accept="image/*" required>
+                                <div class="form-text">Supported formats: JPG, JPEG, PNG</div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Analyze Image</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h4 class="mb-0">About This Model</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>This application uses a ResNet50 deep learning model to classify:</p>
+                        <ul>
+                            <li>Plant diseases across various crops (cotton, wheat, rice, etc.)</li>
+                            <li>Healthy vs. rotten fruits</li>
+                            <li>Pest infestations</li>
+                        </ul>
+                        <p>The model was trained on 70 different classes with over 10,000 images and achieved 99.44% validation accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

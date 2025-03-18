@@ -1,0 +1,295 @@
+
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* Futuristic Dashboard Styles */
+    .dashboard-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 40px;
+        background: linear-gradient(135deg, #1c2833, #283747);
+        color: #e0f7fa;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dashboard-container::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(45deg, rgba(76, 175, 80, 0.2), rgba(33, 150, 243, 0.2));
+        z-index: -1;
+        border-radius: 20px;
+    }
+
+    .dashboard-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #64b5f6;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        animation: slideInDown 1s ease-out;
+    }
+
+    @keyframes slideInDown {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .farm-details, .form-container, .action-buttons {
+        margin-bottom: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        animation: slideInLeft 1s ease-out;
+    }
+
+    @keyframes slideInLeft {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    .farm-details h3, .form-container h3 {
+        color: #81d4fa;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .farm-details ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .farm-details li {
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #b3e5fc;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .farm-details strong {
+        color: #e1f5fe;
+        margin-right: 5px;
+    }
+
+    .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        color: #90caf9;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="number"],
+    .form-container select {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        color: #bbdefb;
+        border-radius: 8px;
+        transition: border-color 0.3s ease;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .form-container input[type="text"]:focus,
+    .form-container input[type="number"]:focus,
+    .form-container select:focus {
+        border-color: #64b5f6;
+        outline: none;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        color: #fff;
+        background: linear-gradient(135deg, #42a5f5, #1e88e5);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .btn:hover {
+        background: linear-gradient(135deg, #1e88e5, #1565c0);
+        transform: translateY(-2px);
+    }
+
+    .btn.danger {
+        background: linear-gradient(135deg, #e57373, #d32f2f);
+    }
+
+    .btn.danger:hover {
+        background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    }
+
+    .action-buttons {
+        text-align: center;
+    }
+
+    .action-buttons .btn {
+        margin: 0 10px;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #1c2833, #283747);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        animation: slideInUp 0.5s ease-out;
+    }
+
+    @keyframes slideInUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-content h3 {
+        color: #f8bbd0;
+        margin-bottom: 15px;
+    }
+
+    .modal-content p {
+        color: #bbdefb;
+        margin-bottom: 20px;
+    }
+
+    .modal-actions .btn {
+        margin: 0 10px;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+<div class="dashboard-container">
+    <h2>Welcome, {{ current_user.username }}!</h2>
+
+    {% if farm_details %}
+        <div class="farm-details">
+            <h3>Farm Details</h3>
+            <ul>
+                <li><strong>Farm Name:</strong> {{ farm_details.name }}</li>
+                <li><strong>Soil Type:</strong> {{ farm_details.soil_type }}</li>
+                <li><strong>Moisture Level:</strong> {{ farm_details.moisture_level }}</li>
+                <li><strong>Temperature:</strong>
+                    {{ farm_details.temperature }}</li>
+            </ul>
+            <button id="edit-farm-btn" class="btn">Edit Farm Details</button>
+        </div>
+    {% else %}
+        <p>No farm details available. Add your farm details below:</p>
+    {% endif %}
+
+    <div id="farm-form-container" class="form-container {% if farm_details %}hidden{% endif %}">
+        <h3>{{ 'Add' if not farm_details else 'Edit' }} Farm Details</h3>
+        <form method="POST" action="{{ url_for('update_farm') }}">
+            <label for="farm_name">Farm Name:</label>
+            <input type="text" id="farm_name" name="farm_name" value="{{ farm_details.name if farm_details else '' }}" required>
+        
+            <label for="soil_type">Soil Type:</label>
+            <select id="soil_type" name="soil_type" required>
+                <option value="Clay" {% if farm_details and farm_details.soil_type == 'Clay' %}selected{% endif %}>Clay</option>
+                <option value="Sandy" {% if farm_details and farm_details.soil_type == 'Sandy' %}selected{% endif %}>Sandy</option>
+                <option value="Loamy" {% if farm_details and farm_details.soil_type == 'Loamy' %}selected{% endif %}>Loamy</option>
+                <option value="Silt" {% if farm_details and farm_details.soil_type == 'Silt' %}selected{% endif %}>Silt</option>
+            </select>
+        
+            <label for="moisture_level">Moisture Level (%):</label>
+            <input type="number" id="moisture_level" name="moisture_level" value="{{ farm_details.moisture_level if farm_details else '' }}" min="0" max="100" required>
+        
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" name="temperature" value="{{ farm_details.temperature if farm_details else '' }}" min="-50" max="50" required>
+        
+            <button type="submit" class="btn">{{ 'Save' if not farm_details else 'Update' }}</button>
+        </form>
+    </div>
+
+    <div class="action-buttons">
+        {% if farm_details %}
+            <button id="delete-farm-btn" class="btn danger">Delete Farm</button>
+        {% endif %}
+        <button id="add-farm-btn" class="btn {% if farm_details %}hidden{% endif %}">Add Farm</button>
+    </div>
+</div>
+
+<div id="confirmation-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Are you sure?</h3>
+        <p>This action cannot be undone.</p>
+        <div class="modal-actions">
+            <button id="confirm-delete" class="btn danger">Yes, Delete</button>
+            <button id="cancel-delete" class="btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Toggle Add/Edit Farm Form
+    document.getElementById('add-farm-btn')?.addEventListener('click', function () {
+        document.getElementById('farm-form-container').classList.remove('hidden');
+        this.classList.add('hidden');
+    });
+
+    document.getElementById('edit-farm-btn')?.addEventListener('click', function () {
+        document.getElementById('farm-form-container').classList.remove('hidden');
+    });
+
+    // Modal for Delete Confirmation
+    const deleteFarmBtn = document.getElementById('delete-farm-btn');
+    const modal = document.getElementById('confirmation-modal');
+    const confirmDeleteBtn = document.getElementById('confirm-delete');
+    const cancelDeleteBtn = document.getElementById('cancel-delete');
+
+    deleteFarmBtn?.addEventListener('click', function () {
+        modal.classList.remove('hidden');
+    });
+
+    cancelDeleteBtn?.addEventListener('click', function () {
+        modal.classList.add('hidden');
+    });
+
+    confirmDeleteBtn?.addEventListener('click', function () {
+        window.location.href = "{{ url_for('delete_farm') }}";
+    });
+</script>
+{% endblock %}
