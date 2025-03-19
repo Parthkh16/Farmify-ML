@@ -1,6 +1,4 @@
-Here’s a detailed README for your Farmify-ML project:  
 
----
 
 # 🚜 Farmify-ML  
 
